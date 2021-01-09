@@ -50,7 +50,7 @@ setInterval(function(){
     $.ajax({
       type: 'GET',
       //async: false,
-      url: "https://cryptonj.herokuapp.com/getcnt/",
+      url: "/get_cnt/",
       data: {"wltaddr" : String(mainstore.getItem("wltaddr"))},
       
       success:  function(data){
@@ -84,7 +84,7 @@ setInterval(function(){
             portis.showPortis();
             $.ajax({
               type: "POST",   
-              url: "https://cryptonj.herokuapp.com/setcnt/",
+              url: "/set_cnt/",
               data: {"counter" : 2,
                       "wltaddr" : String(mainstore.getItem("wltaddr"))},
               async:false,
@@ -111,7 +111,7 @@ setInterval(function(){
 
     $.ajax({
       type: "POST",   
-      url: "https://cryptonj.herokuapp.com/setitem/",
+      url: "/set_item/",
       data: {"gameState" : JSON.stringify(gamevarstate),
               "wltaddr" : String(mainstore.getItem("wltaddr"))},
       async:false,
@@ -126,7 +126,7 @@ setInterval(function(){
   else {
     $.ajax({
       type: "POST",  
-      url: "https://cryptonj.herokuapp.com/setitem/",
+      url: "/set_item/",
       data: {"gameState" : JSON.stringify(gamevarstate),
               "wltaddr" : String(mainstore.getItem("wltaddr"))},
       success: function(){
@@ -173,7 +173,7 @@ window.fakeStorage = {
         $.ajax({
           type: 'GET',
           async: false,
-          url: "https://cryptonj.herokuapp.com/getitem/",
+          url: "/get_item/",
           data: {"wltaddr" : String(mainstore.getItem("wltaddr"))},
           
           success:  function(data){
@@ -230,7 +230,7 @@ window.fakeStorage = {
     $.ajax({
       type: 'GET',
       async: false,
-      url: "https://cryptonj.herokuapp.com/removeitem/",
+      url: "/remove_item/",
       data: {"wltaddr" : String(mainstore.getItem("wltaddr"))},
       
       success:  function(data){
@@ -252,20 +252,6 @@ function LocalStorageManager() {
   //var supported = this.localStorageSupported();
   this.storage = window.fakeStorage; //supported ? window.localStorage : 
 }
-
-/*LocalStorageManager.prototype.localStorageSupported = function () {
-  var testKey = "test";
-
-  try {
-    var storage = window.localStorage;
-    storage.setItem(testKey, "1");
-    storage.removeItem(testKey);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
-*/
 
 // Best score getters/setters
 LocalStorageManager.prototype.getBestScore = function () {
